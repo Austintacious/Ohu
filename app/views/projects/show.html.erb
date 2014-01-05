@@ -1,6 +1,8 @@
 <h1><%= @project.title %> (<%= @project.completion_status %>%)</h1>
 <p><strong>Description:</strong> <%= @project.description %></p>
 <p><strong>Success Information: </strong><%= @project.success_status %></p>
-<br>
+<p><strong>Members: </strong><% @project.users.each do |member| %>
+  <%= member.first_name %> <%= member.last_name %></p><br>
+  <% end %>
 <hr>
 <%= link_to 'Back', projects_path %>

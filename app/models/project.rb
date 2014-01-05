@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
-  has_many :users
-  has_many :user, through: :projectmembers
+  has_many :projectmembers
+  has_many :users, through: :projectmembers, inverse_of: :projects
   validates_presence_of :title
   validates_presence_of :description
   validates_presence_of :completion_status
