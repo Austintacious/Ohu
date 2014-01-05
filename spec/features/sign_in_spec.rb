@@ -1,53 +1,52 @@
 require 'spec_helper'
 
-feature "User signs up", %Q{As an unauthenticated user, 
-I want to be able to sign up, 
-so that I can have richer access to the site} do
-
-#   * You're given an opportunity to sign up
-#   * The sign-up makes you select between signing up as an individual or an organization
-#   * The sign-up prompts you for a valid email
-#   * You're prompted for a password
-#   * You must confirm the password
-#     * If the password and confirmed password are different, you're given an error message and prompted to re-enter until they match
-# * Once submitted, you're shown a welcome page, and directed to your new profile
-
-  scenario "specifying valid/required information" do
+feature "User signs in", %Q{As an unauthenticated user
+I want to be able to sign in to my account
+so that I can access profile information} do
+  
+  scenario 'existing user specifies valid information' do
+    user = FactoryGirl.create(:user)
     visit root_path
-    click_link "Sign Up"
-    # click_button "Individual"
-    fill_in "First Name", with: "Dany"
-    fill_in "Last Name", with: "Targaryen"
-    fill_in "Age", with: "21"
-    fill_in "State", with: "MA"
-    fill_in "Email", with: "queen@westeros.com"
-    fill_in "user_password", with: "motherofdragons"
-    fill_in "Password Confirmation", with: "motherofdragons"
-    click_button "Sign Up"
-    expect(page).to have_content("You're in!")
+    click_link "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Sign In"
+    expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("Sign Out")
   end
 
-
-  scenario "required info not specified" do 
+  scenario 'nonexistent email and password are supplied' do
     visit root_path
-    click_link "Sign Up"
-    click_button "Sign Up"
-    expect(page).to have_content("can't be blank")
+    click_link "Sign In"
+    fill_in "Email", with: "nobody@example.com"
+    fill_in "Password", with: "password"
+    click_button "Sign In"
+    expect(page).to_not have_content("Welcome Back!")
+    expect(page).to_not have_content("Sign Out")
+    expect(page).to have_content("Invalid email or password.")
   end
 
-  scenario "passwords don't match" do
+  scenario 'existing email with wrong password is denied' do
+    user = FactoryGirl.create(:user)
     visit root_path
-    click_link "Sign Up"
-    fill_in "First Name", with: "Dany"
-    fill_in "Last Name", with: "Targaryen"
-    fill_in "Age", with: "21"
-    fill_in "State", with: "MA"
-    fill_in "Email", with: "queen@westeros.com"
-    fill_in "user_password", with: "motherofdragons"
-    fill_in "Password Confirmation", with: "mothaofdragoons"
-    click_button "Sign Up"
-    expect(page).to have_content("doesn't match Password")
-  end 
+    click_link "Sign In"
+    fill_in "Email", with: user.email
+    fill_in "Password", with: "incorrectpassword"
+    click_button "Sign In"
+    expect(page).to_not have_content("Welcome Back!")
+    expect(page).to_not have_content("Sign Out")
+    expect(page).to have_content("Invalid email or password.")
+  end
+
+  scenario 'already authenticated user cannot sign in again' do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    click_button "Sign In"
+    expect(page).to have_content("Welcome Back!")
+    expect(page).to have_content("Sign Out")
+    expect(page).to_not have_content("Sign In")
+  end
 
 end
