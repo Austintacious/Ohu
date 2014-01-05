@@ -40,6 +40,18 @@ class ProjectsController < ApplicationController
     redirect_to projects_path, notice: 'Project removed... We are sad to see it go!'
   end
 
+  def upvote
+    @project = Project.find(params[:id])
+    @project.liked_by current_user
+    redirect_to @project
+  end
+
+  def downvote
+    @project = Project.find(params[:id])
+    @project.downvote_from current_user
+    redirect_to @project
+  end
+
   private
 
   def set_project
