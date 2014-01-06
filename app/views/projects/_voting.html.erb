@@ -1,0 +1,3 @@
+<p><strong>Score: </strong><%= project.likes.size - project.dislikes.size %></p>
+<%= link_to "Upvote", project_like_path(project), method: :post %>
+<%= link_to "Downvote", project_dislike_path(project), method: :post %>

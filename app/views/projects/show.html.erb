@@ -4,5 +4,6 @@
 <p><strong>Members: </strong><% @project.users.each do |member| %>
   <%= member.first_name %> <%= member.last_name %></p><br>
   <% end %>
+<%= render partial: 'projects/voting', locals: {project: @project} %>
 <hr>
 <%= link_to 'Back', projects_path %>

@@ -41,13 +41,13 @@ class ProjectsController < ApplicationController
   end
 
   def upvote
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @project.liked_by current_user
     redirect_to @project
   end
 
   def downvote
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @project.downvote_from current_user
     redirect_to @project
   end

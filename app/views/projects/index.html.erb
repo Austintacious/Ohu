@@ -5,11 +5,9 @@
   <h2><%= project.completion_status %>% complete</h2>
   <p><strong>Description: </strong><%= project.description %><br>
   <strong>Success Information: </strong><%= project.success_status %></p>
-
-  <strong>Score: </strong><%= project.votes.size %><br>
-  <%= link_to "Upvote", project_like_path(project, method: :put) %>
-  <%= link_to "Downvote", project_dislike_path(project, method: :put) %>
-
+  <% if user_signed_in? %>
+    <%= render partial: 'projects/voting', locals: {project: project} %>
+  <% end %>
   <hr>
 <% end %>
 <br>
