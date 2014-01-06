@@ -26,13 +26,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.new(project_params)
-
-    if @project.update(project_params)
-      redirect_to project_path(@project), notice: 'Project successfully updated!'
-    else
-      render :edit
-    end
+    set_project
+    @project.update_attributes!(project_params)
+    redirect_to projects_path
   end
 
   def destroy
@@ -52,6 +48,14 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
 
+  def tagged
+    if params[:tag].present?
+      @projects = Project.tagged_with(params[:tag])
+    else
+      @projects = Project.all
+    end
+  end
+
   private
 
   def set_project
@@ -59,6 +63,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, :completion_status, :success_status)
+    params.require(:project).permit(:title, :description, :completion_status, :success_status, :tag_list)
   end
 end

@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_voter
+  acts_as_tagger
+  acts_as_taggable
+  acts_as_taggable_on :projects
 
   has_many :projectmembers
   has_many :projects, through: :projectmembers, inverse_of: :user
