@@ -32,6 +32,5 @@ describe User do
 
   it {should have_many :projectmembers}
   it {should have_many :projects}
-  it {should have_many :comments}
   it {should have_many :resources}
 end

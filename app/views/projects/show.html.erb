@@ -10,3 +10,23 @@
   <% end %></p>
 <%= link_to 'Add Tag(s)', edit_project_path %>
 <%= render partial: 'projects/voting', locals: {project: @project} %>
+<hr>
+<div id="comments_count">Total Comments: <%= @project.comments.count %></div>
+<hr>
+
+<div id="comments">
+  <% @project.comments.each do |comment| %>
+    <strong><%= comment.user %></strong>
+    <em><%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></em><br>
+    <%= comment.body %>
+    <br><hr>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+  <h3>Add Your comment:</h3>
+  <%= simple_form_for [@project, @comment] do |f| %>
+    <%= f.input :body %>
+    <%= f.submit %>
+  <% end %>
+<% end %>

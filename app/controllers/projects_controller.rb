@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     set_project
+    @comments = @project.comments
+    @comment = Comment.new
   end
 
   def edit

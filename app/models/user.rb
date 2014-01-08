@@ -6,9 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :projectmembers
   has_many :projects, through: :projectmembers, inverse_of: :user
-  has_many :votes
-  has_many :comments
   has_many :resources
+  has_many :comments, inverse_of: :user
 
   validates_presence_of :first_name
   validates_presence_of :last_name
