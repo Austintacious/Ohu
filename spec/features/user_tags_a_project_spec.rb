@@ -10,7 +10,7 @@ feature "User tags a project" do
     click_link "#{project.title}"
     click_link "Add Tag(s)"
     click_button "Update Project"
-    expect(page).to have_content("Tags: Score")
+    expect(page).to have_content("Here are a few current projects!")
   end
 
   scenario 'tags are listed alphabetically' do

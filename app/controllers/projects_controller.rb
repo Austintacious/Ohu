@@ -1,4 +1,18 @@
 class ProjectsController < ApplicationController
+  respond_to :html, :js
+
+  def join_project
+    @project = Project.find(params[:project_id])
+    @projectmember = current_user.projectmembers.create(user_id: current_user.id, project_id: @project.id)
+    redirect_to project_path(@project), notice: 'Welcome aboard!'
+  end
+
+  def leave_project
+    @project = Project.find(params[:project_id])
+    @project.users.destroy(current_user)
+    redirect_to project_path(@project), notice: 'You\'ve been successfully removed from the group. We\'re sorry to see you go!'
+  end
+
   def index
     @projects = Project.all
   end
@@ -19,6 +33,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    @project.users << current_user
 
     if @project.save
       redirect_to project_path(@project), notice: 'Project successfully added!'

@@ -11,6 +11,7 @@ feature "User comments on a project" do
     fill_in "Password", with: user.password
     click_button "Sign In"
     click_link "#{project.title}"
+    click_link "Join this project!"
     fill_in "Body", with: "This is a comment!"
     click_button "Create Comment"
     expect(page).to have_content("Comment created successfully")
@@ -25,8 +26,9 @@ feature "User comments on a project" do
     fill_in "Password", with: user.password
     click_button "Sign In"
     click_link "#{project.title}"
+    click_link "Join this project!"
     click_button "Create Comment"
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("There was an issue adding your comment")
   end
 
   scenario 'unauthenticated user cannot comment' do

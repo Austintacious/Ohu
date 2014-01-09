@@ -4,8 +4,10 @@ Work2transcend::Application.routes.draw do
     post "like", to: "projects#upvote"
     post "dislike", to: "projects#downvote"
     get 'tagged', to: "projects#tagged", as: :tagged
+    put 'join_project', to: "projects#join_project"
+    put 'leave_project', to: "projects#leave_project"
 
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :destroy]
   end
 
   root :to => 'projects#index'
