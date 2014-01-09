@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :comment do
     body "MyText"
-    user_id 1
-    project_id 1
+    user
+    project
   end
 end
