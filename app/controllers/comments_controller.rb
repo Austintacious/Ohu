@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @comment = @project.comments.build(comment_params)
+    @comment.user_id = current_user.id
     if @comment.save
       redirect_to project_path(@project), notice: 'Comment created successfully'
     else

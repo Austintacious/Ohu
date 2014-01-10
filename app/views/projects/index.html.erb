@@ -9,7 +9,7 @@
     <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
     <%= tag.name %> 
     <% end %></p>
-  <% if user_signed_in? && project.users.include?(current_user) && current_user.role == "user" %>
+  <% if user_signed_in? && project.created_by == current_user.id && current_user.role == "user" %>
     <%= link_to 'Edit', edit_project_path(project) %><br>
   <% elsif user_signed_in? && current_user.role == "admin" %>
     <%= link_to 'Edit', edit_project_path(project) %><br>

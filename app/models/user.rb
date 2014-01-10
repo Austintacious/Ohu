@@ -3,10 +3,14 @@ class User < ActiveRecord::Base
   acts_as_tagger
   acts_as_taggable
   acts_as_taggable_on :projects
+  has_attached_file :avatar, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+  }, removable: true
 
   has_many :projectmembers
   has_many :projects, through: :projectmembers, inverse_of: :user
-  has_many :resources
   has_many :comments, inverse_of: :user
 
   validates_presence_of :first_name

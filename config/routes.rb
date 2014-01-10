@@ -6,6 +6,7 @@ Work2transcend::Application.routes.draw do
     get 'tagged', to: "projects#tagged", as: :tagged
     put 'join_project', to: "projects#join_project"
     put 'leave_project', to: "projects#leave_project"
+    delete 'remove_resource', to: "projects#remove_resource"
 
     resources :comments, only: [:index, :create, :destroy]
   end

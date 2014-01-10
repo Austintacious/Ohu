@@ -77,4 +77,14 @@ Work2transcend::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_protocol => 'http',
+    :s3_credentials => {
+      :bucket => ENV['aws_bucket'],
+      :access_key_id => ENV['aws_access_key_id'],
+      :secret_access_key => ENV['aws_secret_access_key']
+    }
+  }
 end
