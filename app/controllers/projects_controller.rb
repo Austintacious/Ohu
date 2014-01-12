@@ -46,10 +46,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        ProjectConfirmation.receipt.deliver
         format.html { redirect_to project_path(@project), notice: 'Project successfully added!' }
         format.json { render json: @project }
       else
-        format.html {redirect_to project_path(@project), notice: 'There was a problem saving your project, please try again.' }
+        format.html {redirect_to :back, notice: 'There was a problem saving your project, please try again.' }
         format.json { head :no_content }
       end
     end
