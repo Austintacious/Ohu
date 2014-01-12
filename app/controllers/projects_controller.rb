@@ -44,10 +44,14 @@ class ProjectsController < ApplicationController
     @project.users << current_user
     @project.created_by = current_user.id
 
-    if @project.save
-      redirect_to project_path(@project), notice: 'Project successfully added!'
-    else
-      render :new
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to project_path(@project), notice: 'Project successfully added!' }
+        format.json { render json: @project }
+      else
+        format.html {redirect_to project_path(@project), notice: 'There was a problem saving your project, please try again.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -65,13 +69,22 @@ class ProjectsController < ApplicationController
   def upvote
     @project = Project.find(params[:project_id])
     @project.liked_by current_user
-    redirect_to @project
+    respond_to do |format|
+      format.html {redirect_to @project, notice: 'Thanks for voting!' }
+      format.json {render json: @project.likes.size - @project.dislikes.size }
+    end
   end
 
   def downvote
     @project = Project.find(params[:project_id])
     @project.downvote_from current_user
-    redirect_to @project
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Thanks for voting!"
+        redirect_to @project
+      end
+      format.json {render json: @project.likes.size - @project.dislikes.size }
+    end
   end
 
   def tagged

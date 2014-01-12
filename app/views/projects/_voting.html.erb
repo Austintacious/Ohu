@@ -1,3 +1,5 @@
-<p><strong>Score: </strong><%= project.likes.size - project.dislikes.size %></p>
-<%= link_to "Upvote", project_like_path(project), method: :post %>
-<%= link_to "Downvote", project_dislike_path(project), method: :post %>
+<div class="votes_size"><strong>Score: </strong><%= project.likes.size - project.dislikes.size %></div>
+<div class="vote">
+  <%= button_to "Upvote", project_like_path(project), method: :post, form: { data: { 'vote-button' => 'create' } } %></div>
+<div class="vote">
+  <%= button_to "Downvote", project_dislike_path(project), method: :post, form: { data: { 'vote-button' => 'create' } } %></div>
