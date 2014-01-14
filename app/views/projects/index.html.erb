@@ -1,1 +1,17 @@
 <h1>Here are a few current projects!</h1>
+<hr>
+<% @projects.each do |project| %>
+  <h1><%= link_to "#{project.title}", project %></h1>
+  <h2><%= project.completion_status %>% complete</h2>
+  <p><strong>Description: </strong><%= project.description %><br>
+  <strong>Success Information: </strong><%= project.success_status %></p>
+  <% if user_signed_in? %>
+    <%= render partial: 'projects/voting', locals: {project: project} %>
+  <% end %>
+  <hr>
+<% end %>
+<br>
+<% if user_signed_in? %>
+  <p>Want to get the ball rolling? Why not <%= link_to 'start a project!', new_project_path %></p>
+<% end %>
+

@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
+  acts_as_voter
+
   has_many :projectmembers
-  has_many :projects, through: :projectmembers
+  has_many :projects, through: :projectmembers, inverse_of: :user
   has_many :votes
   has_many :comments
   has_many :resources

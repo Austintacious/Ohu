@@ -1,6 +1,9 @@
 Work2transcend::Application.routes.draw do
   devise_for :users
-  resources :projects
+  resources :projects do
+    post "like", to: "projects#upvote"
+    post "dislike", to: "projects#downvote"
+  end
   root :to => 'projects#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
