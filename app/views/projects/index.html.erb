@@ -7,13 +7,16 @@
   <strong>Success Information: </strong><%= project.success_status %></p>
   <p><strong>Tags: </strong><% project.tags.any? %>
     <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
-    <%= tag.name %> 
+    <%= tag.name %>
     <% end %></p>
   <% if user_signed_in? && project.created_by == current_user.id && current_user.role == "user" %>
     <%= link_to 'Edit', edit_project_path(project) %><br>
+    <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
   <% elsif user_signed_in? && current_user.role == "admin" %>
     <%= link_to 'Edit', edit_project_path(project) %><br>
     <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
+  <% elsif user_signed_in? && project.created_by != current_user.id && current_user.role == "user" %>
+    <%= link_to 'Edit', edit_project_path(project) %><br>
   <% end %>
   <hr>
 <% end %>

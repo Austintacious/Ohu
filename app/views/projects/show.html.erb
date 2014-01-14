@@ -56,13 +56,7 @@
 <hr>
 
 <div id="comments">
-  <% @project.comments.each do |comment| %>
-    <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
-    <em>on <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></em><br>
-    <%= comment.body %><br><br>
-    <%= link_to 'Delete', project_comment_path(@project, comment), method: :delete %>
-    <br><hr>
-  <% end %>
+  <%= render 'comments' %>
 </div>
 
 <% if @project.users.include?(current_user) || current_user.role == "admin" %>

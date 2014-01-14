@@ -38,10 +38,27 @@ $(document).ready(function(){
       data: $data,
       dataType: "json",
       success: function(comment) {
-        $('#comments').append("<strong>" + comment.user + "</strong><em> on " + comment.comment.created_at + "</em><br>" + comment.comment.body + "<br><hr>");
+        date = new Date(comment.comment.created_at);
+        $('#comments').append("<strong>" + comment.user + "</strong><em> on " + date + "</em><br>" + comment.comment.body + "<br><br><a id=\"ajax_comment\" data-method=\"delete\" href=\"/projects/" + comment.comment.project_id + "/comments/" + comment.comment.id + "\" rel=\"nofollow\">Delete</a><hr>");
         document.getElementById('comment_body').value = "";
       }
     });
   });
+
+  // $('#ajax_comment').on('click', function(e){
+  //   alert('At least this works...');
+  //   e.preventDefault();
+  //   $link = $(e.currentTarget);
+  //   console.log($link);
+  //   $.ajax ({
+  //     type: "POST",
+  //     url: $link.attr('action'),
+  //     dataType: "json",
+  //     success: function(comment) {
+  //       console.log(comment);
+  //     }
+  //   });
+  // });
+
 });
 
