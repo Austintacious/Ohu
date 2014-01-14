@@ -1,12 +1,18 @@
 <h1>Here are a few current projects!</h1>
 <hr>
-<% @projects.each do |project| %>
+<% @projects.sort.each do |project| %>
   <h1><%= link_to "#{project.title}", project %></h1>
   <h2><%= project.completion_status %>% complete</h2>
   <p><strong>Description: </strong><%= project.description %><br>
   <strong>Success Information: </strong><%= project.success_status %></p>
+  <p><strong>Tags: </strong><% project.tags.any? %>
+    <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
+    <%= tag.name %> 
+    <% end %></p>
   <% if user_signed_in? %>
-    <%= render partial: 'projects/voting', locals: {project: project} %>
+    <%= render partial: 'projects/voting', locals: {project: project} %><br><br>
+  <%= link_to 'Edit', edit_project_path(project) %><br>
+  <%= link_to "Destroy #{project.title}", project, method: :delete %>
   <% end %>
   <hr>
 <% end %>

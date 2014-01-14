@@ -4,6 +4,7 @@
     <%= f.input :description %>
     <%= f.input :completion_status, label: "Completion Status" %>
     <%= f.input :success_status, label: "Success Status" %>
+    <%= f.input :tag_list, label: "Tag List", action: :tag %>
     <%= f.submit %>
   <% end %>
 <% else %>

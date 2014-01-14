@@ -3,6 +3,7 @@ Work2transcend::Application.routes.draw do
   resources :projects do
     post "like", to: "projects#upvote"
     post "dislike", to: "projects#downvote"
+    get 'tagged', to: "projects#tagged", as: :tagged
   end
   root :to => 'projects#index'
   # The priority is based upon order of creation: first created -> highest priority.

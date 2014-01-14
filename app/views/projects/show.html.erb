@@ -4,6 +4,9 @@
 <p><strong>Members: </strong><% @project.users.each do |member| %>
   <%= member.first_name %> <%= member.last_name %></p><br>
   <% end %>
+<p><strong>Tags: </strong><% @project.tags.any? %>
+  <% @project.tags.sort.each do |tag| %>
+  <%= tag.name %>
+  <% end %></p>
+<%= link_to 'Add Tag(s)', edit_project_path %>
 <%= render partial: 'projects/voting', locals: {project: @project} %>
-<hr>
-<%= link_to 'Back', projects_path %>
