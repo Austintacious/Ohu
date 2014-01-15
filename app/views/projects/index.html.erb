@@ -10,7 +10,6 @@
     <%= tag.name %> 
     <% end %></p>
   <% if user_signed_in? %>
-    <%= render partial: 'projects/voting', locals: {project: project} %><br><br>
   <%= link_to 'Edit', edit_project_path(project) %><br>
   <%= link_to "Destroy #{project.title}", project, method: :delete %>
   <% end %>

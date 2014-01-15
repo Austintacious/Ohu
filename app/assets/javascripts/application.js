@@ -14,3 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function() {
+
+  $('input[value="Create Comment"]').on("submit", function() {
+    $('#comments').after("<div class='comment'>
+    <% @project.comments.each do |comment| %>
+    <strong><%= comment.user.first_name %> <%= coment.user.last_name%></strong>
+    <em>on <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></em>
+    <%= simple_format comment.body %>
+    <% end %>
+  </div>");
+ 
+    $('#comment_body').value = "";
+ 
+    $('#comments_count').html('<%= @project.comments.count %>');
+  });
+
+});
