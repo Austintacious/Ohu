@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :is_admin, only: [:destroy]
-  respond_to :html, :js
+  respond_to :html, :json
 
   def remove_resource(resource)
     set_project
@@ -71,7 +71,6 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @project.liked_by current_user
     respond_to do |format|
-      format.html {redirect_to @project, notice: 'Thanks for voting!' }
       format.json {render json: @project.likes.size - @project.dislikes.size }
     end
   end

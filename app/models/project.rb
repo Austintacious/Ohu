@@ -12,7 +12,8 @@ class Project < ActiveRecord::Base
     medium: '300x300>'
   }
   has_many :projectmembers
-  has_many :users, through: :projectmembers, inverse_of: :projects
+  has_many :users,
+    through: :projectmembers
   has_many :comments
   validates_presence_of :title
   validates_presence_of :description

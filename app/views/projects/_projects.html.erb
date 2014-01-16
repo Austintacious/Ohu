@@ -1,0 +1,29 @@
+<% @projects.sort.each do |project| %>
+  <div class="project">
+    <h1><%= link_to "#{project.title}", project %></h1>
+    <h2><%= project.completion_status %>% complete</h2>
+    <p><strong>Description: </strong><br>
+    <%= project.description %><br><br>
+    <strong>Success Information: </strong><br>
+    <%= project.success_status %><br><br>
+    <strong>Tags: </strong><br>
+    <% project.tags.any? %>
+      <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
+      <%= tag.name %>
+      <% end %></p>
+    <% if user_signed_in? && project.created_by == current_user.id && current_user.role == "user" %>
+      <div class="edit-links">
+        <%= link_to 'Edit', edit_project_path(project) %><br>
+        <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
+      </div>
+    <% elsif user_signed_in? && current_user.role == "admin" %>
+      <div class="edit-links">
+        <%= link_to 'Edit', edit_project_path(project) %><br>
+        <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
+      </div>
+    <% elsif user_signed_in? && project.created_by != current_user.id && current_user.role == "user" %>
+      <br>
+    <% end %>
+  </div>
+
+<% end %>
