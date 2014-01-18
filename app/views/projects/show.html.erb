@@ -1,3 +1,4 @@
+<div class="single-project">
 <h1><%= @project.title %> (<%= @project.completion_status %>%)</h1>
 
 <% if @project.users.include?(current_user) %>
@@ -7,9 +8,9 @@
   <% end %>
 <p><strong>Description:</strong> <%= @project.description %></p>
 <p><strong>Success Information: </strong><%= @project.success_status %></p>
-<p><strong>Members: </strong><%= @project.users.count %><br>
+<p><strong>Members: </strong><%= @project.users.count %></p>
 <% @project.users.each do |member| %>
-  <%= member.first_name %> <%= member.last_name %></p>
+  <p><%= member.first_name %> <%= member.last_name %></p>
   <% end %>
 <p class="resources"><strong>Resources: </strong><br>
 <% if @project.created_by == current_user.id || current_user.role == "admin" %>
@@ -69,7 +70,7 @@
 </div>
 
 <% if @project.users.include?(current_user) || current_user.role == "admin" %>
-  <h3>Add Your comment:</h3>
+  <h3>Add Your Comment:</h3>
   <%= simple_form_for [@project, @comment] do |f| %>
     <%= f.input :body %>
     <%= f.submit %>
@@ -78,3 +79,4 @@
 <% if @project.created_by == current_user.id || current_user.role = "admin" %>
   <%= link_to 'Edit Project', edit_project_path %>
 <% end %>
+</div>

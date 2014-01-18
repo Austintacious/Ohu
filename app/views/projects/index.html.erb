@@ -1,11 +1,11 @@
 <% unless user_signed_in? %>
 
-  <h1 class="banner">Here are a few current projects!</h1>
   <h3>
     <div class="signup_signin">
       <%= link_to 'Sign In', new_user_session_path %>
     </div>
   </h3>
+  <h1 class="banner">Here are a few current projects!</h1>
   <hr>
   <%= render 'projects' %>
   Not a member? <%= link_to 'Sign Up', new_user_registration_path %><br><br>

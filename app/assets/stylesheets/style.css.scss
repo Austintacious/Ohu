@@ -10,37 +10,87 @@
 body, html {
   height: 100%;
   width: 100%;
+  background-image: url('stardust.png');
 }
 
 .banner {
   text-align: center;
   font-size: 75px;
+  margin-top: 5px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+a {
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 10px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h2 {
   text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 0;
+}
+
+h3 {
+  margin-bottom: 0;
 }
 
 .project {
-  border: 2px solid black;
   width: 50%;
   position: relative;
   margin-left: 25%;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-radius: 20px;
+  background-color: white;
+  opacity: 0.4;
+  box-shadow: 7px 7px 7px #A1D700;
 }
 
 .project p {
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
+  font-family: 'Cardo', serif;
+}
+
+.single-project {
+  margin-left: 25%;
+  margin-right: 25%;
+  text-align: center;
 }
 
 .edit-links {
   text-align: center;
   margin-bottom: 10px;
+}
+
+.left-off-canvas-menu {
+  background-image: url('diagmonds.png');
+}
+
+nav {
+  background-image: url('diagmonds.png') !important;
+}
+
+.blur {
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+  opacity: 0.4;
+}
+
+.main-content {
+  transition: 0.4s;
+}
+
+.sign-in-form {
+  padding-top: 150px;
 }

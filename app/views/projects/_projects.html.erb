@@ -1,5 +1,5 @@
 <% @projects.sort.each do |project| %>
-  <div class="project">
+  <div class="project parallax" data-speed="20">
     <h1><%= link_to "#{project.title}", project %></h1>
     <h2><%= project.completion_status %>% complete</h2>
     <p><strong>Description: </strong><br>

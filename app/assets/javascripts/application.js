@@ -14,9 +14,23 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+
 $(function(){ $(document).foundation(); });
 
 $(document).ready(function(){
+
+  // function parallax() {
+  //   var scrolled = $(window).scrollTop();
+  //   $('.project').css('top', -(scrolled * 0.8) + 'px');
+  // }
+
+  // $(window).scroll(function(e){
+  //   parallax();
+  // });
+
+  $('.menu-icon').click(function(){
+    $('.main-content').toggleClass("blur");
+  });
 
   $('[data-vote-button="create"]').click(function(e){
     e.preventDefault();
