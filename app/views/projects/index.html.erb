@@ -9,9 +9,11 @@
     <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
     <%= tag.name %> 
     <% end %></p>
-  <% if user_signed_in? %>
-  <%= link_to 'Edit', edit_project_path(project) %><br>
-  <%= link_to "Destroy #{project.title}", project, method: :delete %>
+  <% if user_signed_in? && project.users.include?(current_user) && current_user.role == "user" %>
+    <%= link_to 'Edit', edit_project_path(project) %><br>
+  <% elsif user_signed_in? && current_user.role == "admin" %>
+    <%= link_to 'Edit', edit_project_path(project) %><br>
+    <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
   <% end %>
   <hr>
 <% end %>

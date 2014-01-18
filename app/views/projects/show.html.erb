@@ -8,14 +8,14 @@
 <p><strong>Success Information: </strong><%= @project.success_status %></p>
 <p><strong>Members: </strong><%= @project.users.count %><br>
 <% @project.users.each do |member| %>
-  <%= member.first_name %> <%= member.last_name %></p><br>
+  <%= member.first_name %> <%= member.last_name %></p>
   <% end %>
 <p><strong>Resources: </strong></p>
 <p><strong>Tags: </strong><% @project.tags.any? %>
   <% @project.tags.sort.each do |tag| %>
   <%= tag.name %>
   <% end %></p>
-<%= link_to 'Add Tag(s)', edit_project_path %>
+<%= link_to 'Add/Edit Tag(s)', edit_project_path %>
 <%= render partial: 'projects/voting', locals: {project: @project} %>
 <hr>
 <div id="comments_count">Total Comments: <%= @project.comments.count %></div>
@@ -31,7 +31,7 @@
   <% end %>
 </div>
 
-<% if user_signed_in? && @project.users.include?(current_user) %>
+<% if @project.users.include?(current_user) %>
   <h3>Add Your comment:</h3>
   <%= simple_form_for [@project, @comment] do |f| %>
     <%= f.input :body %>

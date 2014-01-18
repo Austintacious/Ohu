@@ -1,9 +1,11 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  before_action :is_admin, only: [:destroy]
   respond_to :html, :js
 
   def join_project
     @project = Project.find(params[:project_id])
-    @projectmember = current_user.projectmembers.create(user_id: current_user.id, project_id: @project.id)
+    @project.users << current_user
     redirect_to project_path(@project), notice: 'Welcome aboard!'
   end
 
@@ -74,6 +76,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def is_admin
+    current_user.role == "admin"
+  end
 
   def set_project
     @project = Project.find(params[:id])
