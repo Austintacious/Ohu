@@ -42,6 +42,8 @@ gem 'aws-sdk'
 
 gem 'foundation-rails'
 
+gem 'newrelic_rpm'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -58,6 +60,8 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'email_spec'
   gem 'mailcatcher'
+  gem 'bullet'
+  gem 'brakeman'
 end
 
 group :production do

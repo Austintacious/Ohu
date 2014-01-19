@@ -4,8 +4,6 @@
     <h2><%= project.completion_status %>% complete</h2>
     <p><strong>Description: </strong><br>
     <%= project.description %><br><br>
-    <strong>Success Information: </strong><br>
-    <%= project.success_status %><br><br>
     <strong>Tags: </strong><br>
     <% project.tags.any? %>
       <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
