@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Work2transcend::Application.config.secret_key_base = '5fe805a9dbca736a1a9426413fd5ab830f35611fdd320ff6c0eeb1e0fa2ca92afa504ec7467454477b6a4307448354ea97e6d4e3045741689588c0d604572a10'
+Work2transcend::Application.config.secret_key_base = ENV['secret_key_base']

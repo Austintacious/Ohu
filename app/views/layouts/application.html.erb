@@ -2,14 +2,21 @@
 <html>
 <head>
   <title>Work2transcend</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "application", media: "all"%>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <nav>
   <ul>
+  <% if user_signed_in? && current_user.avatar_file_size.nil? %>
+      <li><%= link_to image_tag('Bubba.jpg'), edit_user_registration_path, :class => "avatar" %></li>
+    <% elsif user_signed_in? && !(current_user.avatar_file_size.nil?) %>
+      <li><%= link_to image_tag(current_user.avatar), edit_user_registration_path, :class => "avatar" %></li>
+    <% elsif !user_signed_in? %>
+      <p></p>
+    <% end %>
   <li><%= link_to "Home", root_path %></li>
   <% if user_signed_in? %>
     <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>

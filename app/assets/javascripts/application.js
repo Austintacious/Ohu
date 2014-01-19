@@ -12,22 +12,36 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
-$(document).ready(function() {
 
-  $('input[value="Create Comment"]').on("submit", function() {
-    $('#comments').after("<div class='comment'>
-    <% @project.comments.each do |comment| %>
-    <strong><%= comment.user.first_name %> <%= coment.user.last_name%></strong>
-    <em>on <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></em>
-    <%= simple_format comment.body %>
-    <% end %>
-  </div>");
- 
-    $('#comment_body').value = "";
- 
-    $('#comments_count').html('<%= @project.comments.count %>');
+$(document).ready(function(){
+  $('[data-vote-button="create"]').on('submit', function(e){
+    e.preventDefault();
+    $form = $(e.currentTarget);
+    $.ajax({
+      type: "POST",
+      url: $form.attr('action'),
+      dataType: "json",
+      success: function(score){
+        $('.votes_size').html("<strong>Score: </strong>" + score);
+      }
+    });
   });
 
+  $('#new_comment').on('submit', function(e){
+    e.preventDefault();
+    $form = $(e.currentTarget);
+    $data = $('#new_comment').serialize();
+    $.ajax({
+      type: "POST",
+      url: $form.attr('action'),
+      data: $data,
+      dataType: "json",
+      success: function(comment) {
+        $('#comments').append("<strong>" + comment.user + "</strong><em> on " + comment.comment.created_at + "</em><br>" + comment.comment.body + "<br><hr>");
+        document.getElementById('comment_body').value = "";
+      }
+    });
+  });
 });
+

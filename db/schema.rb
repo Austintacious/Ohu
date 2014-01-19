@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140109163946) do
+ActiveRecord::Schema.define(version: 20140110151345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,37 @@ ActiveRecord::Schema.define(version: 20140109163946) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "title",                         null: false
-    t.text     "description",                   null: false
-    t.integer  "completion_status", default: 0, null: false
+    t.string   "title",                              null: false
+    t.text     "description",                        null: false
+    t.integer  "completion_status",      default: 0, null: false
     t.text     "success_status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "resource1_file_name"
+    t.string   "resource1_content_type"
+    t.integer  "resource1_file_size"
+    t.datetime "resource1_updated_at"
+    t.string   "resource2_file_name"
+    t.string   "resource2_content_type"
+    t.integer  "resource2_file_size"
+    t.datetime "resource2_updated_at"
+    t.string   "resource3_file_name"
+    t.string   "resource3_content_type"
+    t.integer  "resource3_file_size"
+    t.datetime "resource3_updated_at"
+    t.string   "resource4_file_name"
+    t.string   "resource4_content_type"
+    t.integer  "resource4_file_size"
+    t.datetime "resource4_updated_at"
+    t.string   "resource5_file_name"
+    t.string   "resource5_content_type"
+    t.integer  "resource5_file_size"
+    t.datetime "resource5_updated_at"
+    t.integer  "created_by",             default: 1
   end
 
   create_table "taggings", force: true do |t|
@@ -76,6 +101,10 @@ ActiveRecord::Schema.define(version: 20140109163946) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role",                   default: "user"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
