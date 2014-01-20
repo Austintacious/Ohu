@@ -1,24 +1,20 @@
-<h1>Here are a few current projects!</h1>
-<hr>
-<% @projects.sort.each do |project| %>
-  <h1><%= link_to "#{project.title}", project %></h1>
-  <h2><%= project.completion_status %>% complete</h2>
-  <p><strong>Description: </strong><%= project.description %><br>
-  <strong>Success Information: </strong><%= project.success_status %></p>
-  <p><strong>Tags: </strong><% project.tags.any? %>
-    <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
-    <%= tag.name %> 
-    <% end %></p>
-  <% if user_signed_in? && project.created_by == current_user.id && current_user.role == "user" %>
-    <%= link_to 'Edit', edit_project_path(project) %><br>
-  <% elsif user_signed_in? && current_user.role == "admin" %>
-    <%= link_to 'Edit', edit_project_path(project) %><br>
-    <%= link_to "Destroy #{project.title}", project, method: :delete, data: { confirm: 'Are you sure about that?'} %>
-  <% end %>
-  <hr>
-<% end %>
-<br>
-<% if user_signed_in? %>
-  <p>Want to get the ball rolling? Why not <%= link_to 'start a project!', new_project_path %></p>
-<% end %>
+<% unless user_signed_in? %>
 
+  <h3>
+    <div class="signup_signin">
+      <%= link_to 'Sign In', new_user_session_path %>
+    </div>
+  </h3>
+  <h1 class="banner">Here are a few current projects!</h1>
+  <hr>
+  <%= render 'projects' %>
+  Not a member? <%= link_to 'Sign Up', new_user_registration_path %><br><br>
+
+<% else %>
+
+  <h1 class="banner">Here are a few current projects!</h1>
+  <hr>
+  <%= render 'projects' %>
+  <br>
+
+<% end %>

@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   }, removable: true
 
   has_many :projectmembers
-  has_many :projects, through: :projectmembers, inverse_of: :user
+  has_many :projects,
+    through: :projectmembers
   has_many :comments, inverse_of: :user
 
   validates_presence_of :first_name

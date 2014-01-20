@@ -23,8 +23,16 @@ class CommentsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:project_id])
-    Comment.find(params[:id]).destroy
-    redirect_to project_path(@project), notice: "Your comment was successfully destroyed"
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      if @comment.destroy
+        format.html { redirect_to :back, notice: 'Your comment was successfully destroyed' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to :back, notice: 'There was an issue deleting your comment.' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

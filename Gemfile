@@ -40,6 +40,10 @@ gem 'paperclip-removable'
 
 gem 'aws-sdk'
 
+gem 'foundation-rails'
+
+gem 'newrelic_rpm'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -54,6 +58,14 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'dotenv-rails'
+  gem 'email_spec'
+  gem 'mailcatcher'
+  gem 'bullet'
+  gem 'brakeman'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password

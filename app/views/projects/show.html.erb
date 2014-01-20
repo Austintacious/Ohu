@@ -1,7 +1,6 @@
+<div class="single-project">
 <h1><%= @project.title %> (<%= @project.completion_status %>%)</h1>
-<% unless @project.avatar_file_name.nil? %>
-  <%= image_tag @project.avatar %>
-<% end %>
+
 <% if @project.users.include?(current_user) %>
   <h2><%= link_to "Leave this project", project_leave_project_path(@project), method: :put %></h2>
   <% else %>
@@ -9,39 +8,50 @@
   <% end %>
 <p><strong>Description:</strong> <%= @project.description %></p>
 <p><strong>Success Information: </strong><%= @project.success_status %></p>
-<p><strong>Members: </strong><%= @project.users.count %><br>
+<p><strong>Members: </strong><%= @project.users.count %></p>
 <% @project.users.each do |member| %>
-  <%= member.first_name %> <%= member.last_name %></p>
+  <p><%= member.first_name %> <%= member.last_name %></p>
   <% end %>
 <p class="resources"><strong>Resources: </strong><br>
 <% if @project.created_by == current_user.id || current_user.role == "admin" %>
   <%= simple_form_for(@project) do |f| %>
     <% unless @project.resource1_file_name.nil? %>
-      <%= image_tag @project.resource1, :class => "resource_pic" %>
-        <%= f.input :resource1, label: "Replace '#{@project.resource1_file_name}'" %>
-        <%= f.input :remove_resource1, as: :boolean, label: "Delete Resource 1?" %>
+      <div class="resource">
+        <%= image_tag @project.resource1, :class => "resource_pic" %>
+          <%= f.input :resource1, label: "Replace '#{@project.resource1_file_name}'" %>
+          <%= f.input :remove_resource1, as: :boolean, label: "Delete Resource 1?" %>
+      </div>
     <% end %>
     <% unless @project.resource2_file_name.nil? %>
-      <%= image_tag @project.resource2, :class => "resource_pic" %>
-        <%= f.input :resource2, label: "Replace '#{@project.resource2_file_name}'" %>
-        <%= f.input :remove_resource2, as: :boolean, label: "Delete Resource 2?" %>
+      <div class="resource">
+        <%= image_tag @project.resource2, :class => "resource_pic" %>
+          <%= f.input :resource2, label: "Replace '#{@project.resource2_file_name}'" %>
+          <%= f.input :remove_resource2, as: :boolean, label: "Delete Resource 2?" %>
+      </div>
     <% end %>
     <% unless @project.resource3_file_name.nil? %>
-      <%= image_tag @project.resource3, :class => "resource_pic" %>
-        <%= f.input :resource3, label: "Replace '#{@project.resource3_file_name}'" %>
-        <%= f.input :remove_resource3, as: :boolean, label: "Delete Resource 3?" %>
+      <div class="resource">
+        <%= image_tag @project.resource3, :class => "resource_pic" %>
+          <%= f.input :resource3, label: "Replace '#{@project.resource3_file_name}'" %>
+          <%= f.input :remove_resource3, as: :boolean, label: "Delete Resource 3?" %>
+      </div>
     <% end %>
     <% unless @project.resource4_file_name.nil? %>
-      <%= image_tag @project.resource4, :class => "resource_pic" %>
-        <%= f.input :resource4, label: "Replace '#{@project.resource4_file_name}'" %>
-        <%= f.input :remove_resource4, as: :boolean, label: "Delete Resource 4?" %>
+      <div class="resource">
+        <%= image_tag @project.resource4, :class => "resource_pic" %>
+          <%= f.input :resource4, label: "Replace '#{@project.resource4_file_name}'" %>
+          <%= f.input :remove_resource4, as: :boolean, label: "Delete Resource 4?" %>
+      </div>
     <% end %>
     <% unless @project.resource5_file_name.nil? %>
-      <%= image_tag @project.resource5, :class => "resource_pic" %>
-        <%= f.input :resource5, label: "Replace '#{@project.resource5_file_name}'" %>
-        <%= f.input :remove_resource5, as: :boolean, label: "Delete Resource 5?" %>
+      <div class="resource">
+        <%= image_tag @project.resource5, :class => "resource_pic" %>
+          <%= f.input :resource5, label: "Replace '#{@project.resource5_file_name}'" %>
+          <%= f.input :remove_resource5, as: :boolean, label: "Delete Resource 5?" %>
+      </div>
     <% end %>
     <% unless @project.resource1_file_name.nil? && @project.resource2_file_name.nil? && @project.resource3_file_name.nil? && @project.resource4_file_name.nil? && @project.resource5_file_name.nil? %>
+      <br><br>
       <%= f.submit %>
     <% end %>
   <% end %>
@@ -56,17 +66,11 @@
 <hr>
 
 <div id="comments">
-  <% @project.comments.each do |comment| %>
-    <strong><%= comment.user.first_name %> <%= comment.user.last_name %></strong>
-    <em>on <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></em><br>
-    <%= comment.body %><br><br>
-    <%= link_to 'Delete', project_comment_path(@project, comment), method: :delete %>
-    <br><hr>
-  <% end %>
+  <%= render 'comments' %>
 </div>
 
 <% if @project.users.include?(current_user) || current_user.role == "admin" %>
-  <h3>Add Your comment:</h3>
+  <h3>Add Your Comment:</h3>
   <%= simple_form_for [@project, @comment] do |f| %>
     <%= f.input :body %>
     <%= f.submit %>
@@ -75,3 +79,4 @@
 <% if @project.created_by == current_user.id || current_user.role = "admin" %>
   <%= link_to 'Edit Project', edit_project_path %>
 <% end %>
+</div>

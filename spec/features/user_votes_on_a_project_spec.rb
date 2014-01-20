@@ -19,7 +19,7 @@ feature "User votes on a project" do
     click_link "#{project.title}"
     expect(page).to have_content("Upvote")
     expect(page).to have_content("Downvote")
-    click_link "Upvote"
+    click_on "Upvote"
     expect(page).to have_content("Score: 1")
   end
 
@@ -34,7 +34,7 @@ feature "User votes on a project" do
     click_link "#{project.title}"
     expect(page).to have_content("Upvote")
     expect(page).to have_content("Downvote")
-    click_link "Downvote"
+    click_on "Downvote"
     expect(page).to have_content("Score: -1")
   end
 
@@ -49,8 +49,8 @@ feature "User votes on a project" do
     click_link "#{project.title}"
     expect(page).to have_content("Upvote")
     expect(page).to have_content("Downvote")
-    click_link "Upvote"
-    click_link "Upvote"
+    click_on "Upvote"
+    click_on "Upvote"
     expect(page).to_not have_content("Score: 2")
   end
 
@@ -65,8 +65,8 @@ feature "User votes on a project" do
     click_link "#{project.title}"
     expect(page).to have_content("Upvote")
     expect(page).to have_content("Downvote")
-    click_link "Downvote"
-    click_link "Downvote"
+    click_on "Downvote"
+    click_on "Downvote"
     expect(page).to have_content("Score: -1")
   end
 
@@ -81,9 +81,9 @@ feature "User votes on a project" do
     click_link "#{project.title}"
     expect(page).to have_content("Upvote")
     expect(page).to have_content("Downvote")
-    click_link "Upvote"
+    click_on "Upvote"
     expect(page).to have_content("Score: 1")
-    click_link "Downvote"
+    click_on "Downvote"
     expect(page).to have_content("Score: -1")
   end
 

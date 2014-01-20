@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :is_admin, only: [:destroy]
-  respond_to :html, :js
+  respond_to :html, :json
 
   def remove_resource(resource)
     set_project
@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all
+    @projects = Project.all.includes(:tags)
   end
 
   def new
@@ -46,10 +46,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        ProjectConfirmation.receipt.deliver
         format.html { redirect_to project_path(@project), notice: 'Project successfully added!' }
         format.json { render json: @project }
       else
-        format.html {redirect_to project_path(@project), notice: 'There was a problem saving your project, please try again.' }
+        format.html {redirect_to :back, notice: 'There was a problem saving your project, please try again.' }
         format.json { head :no_content }
       end
     end
@@ -70,7 +71,6 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @project.liked_by current_user
     respond_to do |format|
-      format.html {redirect_to @project, notice: 'Thanks for voting!' }
       format.json {render json: @project.likes.size - @project.dislikes.size }
     end
   end

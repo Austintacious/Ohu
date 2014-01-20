@@ -12,15 +12,32 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require_tree .
 
+$(function(){ $(document).foundation(); });
+
 $(document).ready(function(){
-  $('[data-vote-button="create"]').on('submit', function(e){
+
+  // function parallax() {
+  //   var scrolled = $(window).scrollTop();
+  //   $('.project').css('top', -(scrolled * 0.8) + 'px');
+  // }
+
+  // $(window).scroll(function(e){
+  //   parallax();
+  // });
+
+  $('.menu-icon').click(function(){
+    $('.main-content').toggleClass("blur");
+  });
+
+  $('[data-vote-button="create"]').click(function(e){
     e.preventDefault();
     $form = $(e.currentTarget);
     $.ajax({
       type: "POST",
-      url: $form.attr('action'),
+      url: $form.attr('href'),
       dataType: "json",
       success: function(score){
         $('.votes_size').html("<strong>Score: </strong>" + score);
@@ -38,10 +55,31 @@ $(document).ready(function(){
       data: $data,
       dataType: "json",
       success: function(comment) {
-        $('#comments').append("<strong>" + comment.user + "</strong><em> on " + comment.comment.created_at + "</em><br>" + comment.comment.body + "<br><hr>");
+        // initial_date = new Date(comment.comment.created_at);
+        // full_date = initial_date.toDateString();
+        // date = full_date + " " + initial_date.getHours() + ":" + initial_date.getMinutes();
+        $('#comments').append("<strong>" + comment.user + "</strong><br><br>" + comment.comment.body + "<br><br><a id=\"ajax_comment\" data-method=\"delete\" href=\"/projects/" + comment.comment.project_id + "/comments/" + comment.comment.id + "\" rel=\"nofollow\">Delete</a><hr>");
         document.getElementById('comment_body').value = "";
       }
     });
   });
+
+  // $('#ajax_comment').on('click', function(e){
+  //   alert('At least this works...');
+  //   e.preventDefault();
+  //   $link = $(e.currentTarget);
+  //   console.log($link);
+  //   $.ajax ({
+  //     type: "POST",
+  //     url: $link.attr('action'),
+  //     dataType: "json",
+  //     success: function(comment) {
+  //       console.log(comment);
+  //     }
+  //   });
+  // });
+
 });
+
+
 
