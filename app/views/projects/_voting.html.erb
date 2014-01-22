@@ -1,5 +1,5 @@
-<div class="votes_size"><strong>Score: </strong><%= project.likes.size - project.dislikes.size %></div>
-<div class="vote">
-  <%= link_to "Upvote", project_like_path(project), method: :post, data: { 'vote-button' => 'create' }, remote: true %></div>
-<div class="vote">
-  <%= link_to "Downvote", project_dislike_path(project), method: :post, data: { 'vote-button' => 'create' }, remote: true %></div>
+<div id="project<%= project.id %>_votes_size" class="votes_size"><strong>Score: </strong><%= project.likes.size - project.dislikes.size %></div>
+<div class="upvote">
+  <%= link_to "<button>▲</button>".html_safe, project_like_path(project), method: :post, data: { 'vote-button' => 'create' }, remote: true %></div>
+<div class="downvote">
+  <%= link_to "<button>▼</button>".html_safe, project_dislike_path(project), method: :post, data: { 'vote-button' => 'create' }, remote: true %></div>

@@ -5,16 +5,19 @@
       <%= link_to 'Sign In', new_user_session_path %>
     </div>
   </h3>
-  <h1 class="banner">Here are a few current projects!</h1>
+  <h1 class="banner">Find a Project // Find a Passion</h1>
   <hr>
-  <%= render 'projects' %>
+  <%= render 'projects' %><br><br>
   Not a member? <%= link_to 'Sign Up', new_user_registration_path %><br><br>
 
 <% else %>
 
-  <h1 class="banner">Here are a few current projects!</h1>
+  <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
   <hr>
   <%= render 'projects' %>
   <br>
 
 <% end %>
+
+
+

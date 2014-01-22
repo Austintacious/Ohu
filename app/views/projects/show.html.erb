@@ -60,7 +60,9 @@
   <% @project.tags.sort.each do |tag| %>
   <%= tag.name %>
   <% end %></p>
-<%= render partial: 'projects/voting', locals: {project: @project} %>
+<div class="show">
+  <%= render partial: 'projects/voting', locals: {project: @project} %>
+</div>
 <hr>
 <div id="comments_count">Total Comments: <%= @project.comments.count %></div>
 <hr>
