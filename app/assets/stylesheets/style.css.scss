@@ -103,6 +103,7 @@ h1 {
 h2 {
   text-align: center;
   margin-top: 0;
+  color: white;
 }
 
 h3 {
@@ -430,6 +431,10 @@ form .file {
 input {
   margin-left: 45%;
   margin-right: 40%;
+}
+
+.form-actions input {
+  margin-left: 46%;
 }
 
 label {
