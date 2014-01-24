@@ -1,20 +1,53 @@
 <div class="single-project">
-<h1><%= @project.title %> (<%= @project.completion_status %>%)</h1>
 
 <% if @project.users.include?(current_user) %>
-  <h2><%= link_to "Leave this project", project_leave_project_path(@project), method: :put %></h2>
-  <% else %>
-    <h2><%= link_to "Join this project!", project_join_project_path(@project), method: :put %></h2>
-  <% end %>
-<p><strong>Description:</strong> <%= @project.description %></p>
-<p><strong>Success Information: </strong><%= @project.success_status %></p>
-<p><strong>Members: </strong><%= @project.users.count %></p>
+  <span class="leave-button">
+    <%= link_to "-", project_leave_project_path(@project), method: :put %>
+  </span>
+<% else %>
+  <span class="join-button">
+    <%= link_to "+", project_join_project_path(@project), method: :put %>
+  </span>
+<% end %>
+
+<% if @project.avatar_file_size.nil? %>
+  <%= image_tag 'Bubba.jpg', :class => "project-image" %>
+<% else %>
+  <%= image_tag @project.avatar, :class => "project-image" %>
+<% end %>
+
+<h1><%= @project.title %> (<%= @project.completion_status %>%)</h1>
+
+<p><strong>Description:</strong><br> <%= @project.description %></p>
+
+<p><strong>Success Information:</strong><br> <%= @project.success_status %></p>
+
+<p>
+  <strong>Members: </strong>
+  <%= @project.users.count %>
+</p>
+
 <% @project.users.each do |member| %>
-  <p><%= member.first_name %> <%= member.last_name %></p>
+  <% if member.avatar_file_size.nil? %>
+    <p class="avatar">
+      <%= image_tag 'Bubba.jpg', :class => "member-avatar" %><br>
+      <%= member.first_name %> <%= member.last_name %>
+    </p>
+  <% else %>
+    <p class="avatar">
+      <%= image_tag member.avatar, :class => "member-avatar" %><br>
+      <%= member.first_name %> <%= member.last_name %>
+    </p>
   <% end %>
+<% end %>
+
+<hr>
+
 <p class="resources"><strong>Resources: </strong><br>
 <% if @project.created_by == current_user.id || current_user.role == "admin" %>
+
   <%= simple_form_for(@project) do |f| %>
+
     <% unless @project.resource1_file_name.nil? %>
       <div class="resource">
         <%= image_tag @project.resource1, :class => "resource_pic" %>
@@ -51,11 +84,47 @@
       </div>
     <% end %>
     <% unless @project.resource1_file_name.nil? && @project.resource2_file_name.nil? && @project.resource3_file_name.nil? && @project.resource4_file_name.nil? && @project.resource5_file_name.nil? %>
-      <br><br>
+      <br>
       <%= f.submit %>
     <% end %>
+
   <% end %>
+
+<% elsif @project.created_by != current_user.id %>
+  <% unless @project.resource1_file_name.nil? %>
+    <div class="resource">
+      <%= image_tag @project.resource1, :class => "resource_pic" %>
+    </div>
+  <% end %>
+
+  <% unless @project.resource2_file_name.nil? %>
+    <div class="resource">
+      <%= image_tag @project.resource2, :class => "resource_pic" %>
+    </div>
+  <% end %>
+
+  <% unless @project.resource3_file_name.nil? %>
+    <div class="resource">
+      <%= image_tag @project.resource3, :class => "resource_pic" %>
+    </div>
+  <% end %>
+
+  <% unless @project.resource4_file_name.nil? %>
+    <div class="resource">
+      <%= image_tag @project.resource4, :class => "resource_pic" %>
+    </div>
+  <% end %>
+
+  <% unless @project.resource5_file_name.nil? %>
+    <div class="resource">
+      <%= image_tag @project.resource5, :class => "resource_pic" %>
+    </div>
+  <% end %>
+
 <% end %>
+</p>
+<br>
+
 <p><strong>Tags: </strong><% @project.tags.any? %>
   <% @project.tags.sort.each do |tag| %>
   <%= tag.name %>
@@ -64,7 +133,12 @@
   <%= render partial: 'projects/voting', locals: {project: @project} %>
 </div>
 <hr>
-<div id="comments_count">Total Comments: <%= @project.comments.count %></div>
+<div id="comments_count">
+  <p>
+    Total Comments: <%= @project.comments.count %>
+  </p>
+</div>
+
 <hr>
 
 <div id="comments">

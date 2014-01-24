@@ -1,18 +1,31 @@
 <% unless user_signed_in? %>
 
+  <div class="welcome">
+  <p>Not a member?</p> <%= link_to "<button>Sign Up</button>".html_safe, new_user_registration_path %><br><br>
+  </div>
+
   <h3>
-    <div class="signup_signin">
+    <div class="signin">
       <%= link_to 'Sign In', new_user_session_path %>
     </div>
   </h3>
-  <h1 class="banner">Find a Project // Find a Passion</h1>
+  <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
+
+  <%= form_tag projects_path, method: :get do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for a project by tag or title!" %>
+  <% end %>
+
   <hr>
+
   <%= render 'projects' %><br><br>
-  Not a member? <%= link_to 'Sign Up', new_user_registration_path %><br><br>
 
 <% else %>
 
   <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
+
+  <%= form_tag projects_path, method: :get do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for a project by tag or title!" %>
+  <% end %>
   <hr>
   <%= render 'projects' %>
   <br>

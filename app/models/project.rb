@@ -19,4 +19,13 @@ class Project < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :completion_status
   validates_numericality_of :completion_status, greater_than_or_equal_to: 0, less_than_or_equal_to: 100
+
+  def self.search(search)
+    if search
+      Project.includes(:tags).where('tags.name ILIKE ? OR projects.title ILIKE ?',"%#{search}%", "%#{search}%").references(:tags)
+    else
+      scoped
+    end
+  end
+
 end

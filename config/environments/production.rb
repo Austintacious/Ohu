@@ -89,4 +89,7 @@ Work2transcend::Application.configure do
       :secret_access_key => ENV['aws_secret_access_key']
     }
   }
+
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  config.assets.precompile += %w(.otf)
 end
