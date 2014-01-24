@@ -1,3 +1,18 @@
+.introduction {
+  height: 31em;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2.5em;
+  color: white;
+  font-family: 'Cardo', serif;
+}
+
+.introduction p {
+  font-size: 3em;
+}
+
 .welcome {
   height: 48.7em;
   width: 100%;
@@ -16,16 +31,28 @@
   margin-top: 21em;
   color: #CAF200;
   text-align: center;
+  font-family: 'Cardo', serif;
 }
 
-.welcome button {
+.pre-banner p {
+  margin-left: 43%;
+  margin-right: 43%;
+  margin-top: 1em;
+  color: #CAF200;
+  text-align: center;
+  font-family: 'Cardo', serif;
+}
+
+.pre-banner button {
   width: 50%;
   margin-left: 25%;
   background-color: #3B0024;
   border-radius: 5%;
+  font-family: 'Novecento', sans-serif;
+  font-weight: bold;
 }
 
-.welcome button:hover {
+.pre-banner button:hover {
   color: #CAF200;
   border-radius: 5%;
 }
@@ -122,7 +149,7 @@ button:focus {
 .pic-container {
   background-image: url("../assets/mountains.jpg");
   background-size: cover;
-  padding-top: 1em;
+  padding-top: 0.5em;
 }
 
 .completion {
@@ -154,10 +181,10 @@ button:focus {
 }
 
 .title a {
-  text-shadow: .01em .01em white;
+  text-shadow: 0 .2em 1.75em white;
 }
 
-.title a:hover {
+h3.title a:hover {
   color: #CAF200;
 }
 
@@ -230,6 +257,10 @@ button:focus {
   color: #730046;
   font-size: 1.5em;
   line-height: 0.3;
+}
+
+.join-button a:hover {
+  color: #CAF200;
 }
 
 .single-project {
@@ -354,6 +385,10 @@ button:focus {
 
 .edit-links a {
   font-family: 'Cardo', sans-serif;
+}
+
+.edit-links a:hover {
+  color: #CAF200;
 }
 
 .left-off-canvas-menu {

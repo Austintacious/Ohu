@@ -1,7 +1,10 @@
 <% unless user_signed_in? %>
 
   <div class="welcome">
-  <p>Not a member?</p> <%= link_to "<button>Sign Up</button>".html_safe, new_user_registration_path %><br><br>
+  </div>
+
+  <div class="introduction">
+    <p>One of the greatest problems in community-based projects is the sharing of information. This website seeks to bridge the gaps between organizations and those invested in the community. Sign up and start a project today! Welcome to Ohu!</p>
   </div>
 
   <h3>
@@ -9,6 +12,11 @@
       <%= link_to 'Sign In', new_user_session_path %>
     </div>
   </h3>
+
+  <div class="pre-banner">
+    <p>Not a member?</p> <%= link_to "<button>Sign Up</button>".html_safe, new_user_registration_path %>
+  </div>
+
   <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
 
   <%= form_tag projects_path, method: :get do %>
