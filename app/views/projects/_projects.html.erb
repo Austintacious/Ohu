@@ -1,14 +1,35 @@
+
 <% @projects.sort.each do |project| %>
-  <div class="project parallax" data-speed="20">
-    <h1><%= link_to "#{project.title}", project %></h1>
-    <h2><%= project.completion_status %>% complete</h2>
-    <p><strong>Description: </strong><br>
-    <%= project.description %><br><br>
-    <strong>Tags: </strong><br>
-    <% project.tags.any? %>
-      <% project.tags.sort{|a,b| a.name <=> b.name}.each do |tag| %>
-      <%= tag.name %>
-      <% end %></p>
+  <div class="project" data-speed="20">
+    <div class="pic-container" <% if !project.avatar_file_size.nil? %> style="background-image: url(<%= project.avatar %>);" <% end %>>
+      <h3>
+        <span class="join-button"><%= link_to "+", project_join_project_path(project), method: :put %>
+        </span>
+        <%= project.projectmembers.first.user.first_name + " " + project.projectmembers.first.user.last_name %>
+      </h3>
+      <h4>
+        <%= project.projectmembers.first.user.state %>
+      </h4>
+      <h2 class="completion">
+        <%= project.completion_status %>%
+      </h2>
+      <h3 class="title">
+        <div class="transparency">
+          <%= link_to "#{project.title}", project %>
+        </div>
+      </h3>
+    </div>
+    <hr>
+    <div class="index">
+      <%= render partial: 'projects/voting', locals: {project: project} %>
+    </div>
+    <p>
+      <% project.tags.any? %>
+        <% project.tags.sort{|a,b| a.name <=> b.name}.first(3).each do |tag| %>
+        / <%= tag.name %> /
+        <% end %>
+    </p>
+
     <% if user_signed_in? && project.created_by == current_user.id && current_user.role == "user" %>
       <div class="edit-links">
         <%= link_to 'Edit', edit_project_path(project) %><br>

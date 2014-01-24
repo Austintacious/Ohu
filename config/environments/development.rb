@@ -32,4 +32,7 @@ Work2transcend::Application.configure do
     Bullet.rails_logger = true
   end
 
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  config.assets.precompile += %w(.otf)
+
 end

@@ -9,6 +9,10 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def group_email
+    set_project
+  end
+
   def join_project
     @project = Project.find(params[:project_id])
     @project.users << current_user
@@ -22,7 +26,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = Project.all.includes(:tags)
+    @projects = Project.all.includes(:tags).search(params[:search])
   end
 
   def new
@@ -46,7 +50,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        ProjectConfirmation.receipt.deliver
+        ProjectMailer.project_confirmation(@project, current_user).deliver
         format.html { redirect_to project_path(@project), notice: 'Project successfully added!' }
         format.json { render json: @project }
       else
@@ -71,7 +75,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @project.liked_by current_user
     respond_to do |format|
-      format.json {render json: @project.likes.size - @project.dislikes.size }
+      format.json {render json: [@project, (@project.likes.size - @project.dislikes.size)] }
     end
   end
 
@@ -83,7 +87,7 @@ class ProjectsController < ApplicationController
         flash[:notice] = "Thanks for voting!"
         redirect_to @project
       end
-      format.json {render json: @project.likes.size - @project.dislikes.size }
+      format.json {render json: [@project, (@project.likes.size - @project.dislikes.size)] }
     end
   end
 

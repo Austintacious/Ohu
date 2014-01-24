@@ -39,8 +39,10 @@ $(document).ready(function(){
       type: "POST",
       url: $form.attr('href'),
       dataType: "json",
-      success: function(score){
-        $('.votes_size').html("<strong>Score: </strong>" + score);
+      success: function(project){
+        $votes = $("#project" + project[0].id + "_votes_size");
+        score = project[1]
+        $votes.html("<strong>Score: </strong>" + score);
       }
     });
   });
@@ -55,9 +57,6 @@ $(document).ready(function(){
       data: $data,
       dataType: "json",
       success: function(comment) {
-        // initial_date = new Date(comment.comment.created_at);
-        // full_date = initial_date.toDateString();
-        // date = full_date + " " + initial_date.getHours() + ":" + initial_date.getMinutes();
         $('#comments').append("<strong>" + comment.user + "</strong><br><br>" + comment.comment.body + "<br><br><a id=\"ajax_comment\" data-method=\"delete\" href=\"/projects/" + comment.comment.project_id + "/comments/" + comment.comment.id + "\" rel=\"nofollow\">Delete</a><hr>");
         document.getElementById('comment_body').value = "";
       }

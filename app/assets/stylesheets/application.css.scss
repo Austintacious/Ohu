@@ -15,3 +15,12 @@
 
  @import 'foundation_and_overrides';
  @import 'style';
+
+ @font-face {
+    font-family: 'Novecento';
+    src: url('/assets/Novecentowide-Bold.otf');
+    src: url('/assets/Novecentowide-DemiBold.otf');
+    src: url('/assets/Novecentowide-Medium.otf');
+    src: url('/assets/Novecentowide-Normal.otf');
+}
+

@@ -1,38 +1,79 @@
-.resource {
-  display: inline-block;
+.welcome {
+  height: 48.7em;
+  width: 100%;
+  border: 1px solid black;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  background: url('lightbulb.png') no-repeat center;
+  background-size: 48.7em;
+  margin-bottom: 3em;
 }
 
-.resource_pic {
-  height: 200px;
-  width: 200px;
+.welcome p {
+  margin-left: 43%;
+  margin-right: 43%;
+  margin-top: 21em;
+  color: #CAF200;
+  text-align: center;
+}
+
+.welcome button {
+  width: 50%;
+  margin-left: 25%;
+  background-color: #3B0024;
+  border-radius: 5%;
+}
+
+.welcome button:hover {
+  color: #CAF200;
+  border-radius: 5%;
+}
+
+.signin {
+  text-align: center;
+  border-radius: 100%;
+  border: 3px solid white;
+  height: 3em;
+  width: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  line-height: 1.1;
+}
+
+.signin:hover {
+  background-color: #3B0024;
 }
 
 body, html {
   height: 100%;
   width: 100%;
-  background-image: url('stardust.png');
+  background-color: #2E3233;
 }
 
 .banner {
   text-align: center;
   font-size: 75px;
   margin-top: 5px;
-  font-family: 'Ubuntu', sans-serif;
+  color: black;
 }
 
 a {
-  font-family: 'Ubuntu', sans-serif;
+  color: #3B0024;
+}
+
+a:hover {
+  color: #CAF200;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 10px;
-  font-family: 'Ubuntu', sans-serif;
 }
 
 h2 {
   text-align: center;
-  font-family: 'Ubuntu', sans-serif;
   margin-top: 0;
 }
 
@@ -40,34 +81,279 @@ h3 {
   margin-bottom: 0;
 }
 
+button {
+  margin: 0 0 0rem;
+  padding: 0 2.97rem 0.2rem 2.97rem;
+  text-align: center;
+  font-size: 3em;
+  background-color: #2E3233;
+}
+
+button:hover {
+  background-color: #3B0024;
+}
+
+button:focus {
+  background-color: #3B0024;
+}
+
 .project {
-  width: 50%;
+  height: 25em;
+  width: 20%;
+  float: center;
   position: relative;
-  margin-left: 25%;
+  display: inline-block;
+  margin-top: 1em;
+  margin-left: 4%;
   margin-bottom: 25px;
   padding-bottom: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: white;
-  opacity: 0.4;
-  box-shadow: 7px 7px 7px #A1D700;
+  opacity: 0.9;
+  box-shadow: 7px 7px 7px #3B0024;
+  overflow: scroll;
+  background-image: url('stardust.png');
+}
+
+.project:hover {
+  box-shadow: 7px 7px 7px #CAF200;
+}
+
+.pic-container {
+  background-image: url("../assets/mountains.jpg");
+  background-size: cover;
+  padding-top: 1em;
+}
+
+.completion {
+  font-family: 'Novecento', sans-serif;
+  font-weight: 'Medium';
+  color: black;
+  border: 3px solid black;
+  border-radius: 100%;
+  box-shadow: 2px 2px 2px #3B0024;
+  width: 2.5em;
+  height: 2.5em;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 2.2em;
+}
+
+.completion:hover {
+  background-color: #3B0024;
+  color: #CAF200;
+}
+
+.project .title {
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 0.8;
+  font-size: 1.75em;
+}
+
+.title a {
+  text-shadow: .01em .01em white;
+}
+
+.title a:hover {
+  color: #CAF200;
+}
+
+.project h3, h4 {
+  text-align: right;
+  padding-right: 5%;
+  padding-top: 5%;
+  margin-top: 0;
+  font-family: 'Novecento', sans-serif;
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 0.9;
+}
+
+.project hr {
+  margin-top: 0.25em;
+  padding: 0;
+  border: none;
+  border-top: medium single #333;
+  color: #333;
+  text-align: center;
+  box-shadow: 0 0 10px 1px black;
+}
+
+.index {
+  text-align: center;
+}
+
+.index .upvote {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  height: 15%;
+}
+
+.index .downvote {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 15%;
+}
+
+.index .votes_size {
+  color: #E2E3DF;
+  position: absolute;
+  bottom: 1.5em;
+  padding-left: 6.75em;
+  z-index: 1;
+}
+
+.project a:hover {
+  color: #3B0024;
 }
 
 .project p {
-  margin-left: 10px;
-  margin-right: 10px;
   text-align: center;
   font-family: 'Cardo', serif;
+  position: absolute;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  bottom: 10%;
+  color: #E2E3DF;
+}
+
+.join-button a {
+  float: left;
+  padding-left: 5%;
+  color: #730046;
+  font-size: 1.5em;
+  line-height: 0.3;
 }
 
 .single-project {
   margin-left: 25%;
   margin-right: 25%;
+  margin-bottom: 5%;
+  padding-bottom: 1.5%;
   text-align: center;
+  border-radius: 0.5%;
+  background-image: url('stardust.png');
+  box-shadow: 3em 3em 3em black;
+}
+
+.single-project .join-button a {
+  float: right;
+  margin-right: 5%;
+  margin-top: 5%;
+  font-size: 5em;
+  width: 5rem;
+  height: 5rem;
+  line-height: 0.7;
+  padding: 0 0.3em 0 0.15em;
+  color: #CAF200;
+}
+
+.single-project .leave-button a {
+  float: right;
+  margin-right: 5%;
+  margin-top: 5%;
+  font-size: 5em;
+  width: 5rem;
+  height: 5rem;
+  line-height: 0.75;
+  padding: 0 0.3em 0 0.25em;
+  color: #CAF200;
+}
+
+.project-image {
+  height: 20em;
+  width: 20em;
+  -webkit-box-shadow: 3px 3px 3px 5px black;
+  -moz-box-shadow: 3px 3px 3px 5px black;
+  box-shadow: 3px 3px 3px 5px black;
+  border-radius: 100%;
+  margin-left: 15%;
+  margin-top: 10%;
+}
+
+.single-project a {
+  color: #590036;
+}
+
+.single-project a:hover {
+  color: #CAF200;
+}
+
+.single-project p {
+  color: white;
+  font-family: 'Cardo', serif;
+}
+
+.single-project h1 {
+ color: white;
+}
+
+.member-avatar {
+  -webkit-box-shadow: 2px 2px 2px 3px black;
+  -moz-box-shadow: 2px 2px 2px 3px black;
+  box-shadow: 2px 2px 2px 3px black;
+  border-radius: 100%;
+  height: 10em;
+  width: 10em;
+  margin-right: .5em;
+}
+
+.avatar {
+  display: inline-block;
+}
+
+.resource {
+  display: inline-block;
+}
+
+.resource_pic {
+  height: 200px;
+  width: 200px;
+  -webkit-box-shadow: 3px 3px 3px 4px black;
+  -moz-box-shadow: 3px 3px 3px 4px black;
+  box-shadow: 3px 3px 3px 4px black;
+  border-radius: 100%;
+}
+
+.single-project button:hover {
+  background-color: #CAF200;
+}
+
+.single-project button:focus {
+  background-color: #CAF200;
+}
+
+.single-project .votes_size {
+  margin-bottom: 1.5em;
+  color: white;
+}
+
+.single-project h3 {
+  color: white;
+}
+
+#comments {
+  color: white;
 }
 
 .edit-links {
   text-align: center;
-  margin-bottom: 10px;
+  position: absolute;
+  bottom: 25%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+}
+
+.edit-links a {
+  font-family: 'Cardo', sans-serif;
 }
 
 .left-off-canvas-menu {
@@ -93,4 +379,15 @@ nav {
 
 .sign-in-form {
   padding-top: 150px;
+}
+
+label {
+  color: white;
+  margin-top: .75em;
+}
+
+.notice {
+  color: #CAF200;
+  text-align: center;
+  font-size: 2em;
 }
