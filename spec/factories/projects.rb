@@ -2,9 +2,10 @@
 
 FactoryGirl.define do
   factory :project do
-    title "MyString"
-    description "MyText"
-    completion_status 1
-    success_status "MyText"
+    user
+    title "My Project"
+    description "Some words that describe"
+    completion_status 10
+    success_status "Needs work"
   end
 end

@@ -44,7 +44,7 @@
 <hr>
 
 <p class="resources"><strong>Resources: </strong><br>
-<% if @project.created_by == current_user.id || current_user.role == "admin" %>
+<% if @project.user_id == current_user.id || current_user.role == "admin" %>
 
   <%= simple_form_for(@project) do |f| %>
 
@@ -90,7 +90,7 @@
 
   <% end %>
 
-<% elsif @project.created_by != current_user.id %>
+<% elsif @project.user_id != current_user.id %>
   <% unless @project.resource1_file_name.nil? %>
     <div class="resource">
       <%= image_tag @project.resource1, :class => "resource_pic" %>
@@ -152,7 +152,7 @@
     <%= f.submit %>
   <% end %>
 <% end %><br>
-<% if @project.created_by == current_user.id || current_user.role = "admin" %>
+<% if @project.user_id == current_user.id || current_user.role = "admin" %>
   <%= link_to 'Edit Project', edit_project_path %>
 <% end %>
 </div>
