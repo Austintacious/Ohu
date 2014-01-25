@@ -9,6 +9,7 @@ describe Project do
   it {should have_valid(:completion_status).when(1, 100, 32, 54)}
   it {should_not have_valid(:completion_status).when(*invalid_status)}
 
+  it {should belong_to :user}
   it {should have_many :votes}
   it {should have_many :comments}
   it {should have_many :taggings}

@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.users << current_user
-    @project.created_by = current_user.id
+    @project.user_id = current_user.id
 
     respond_to do |format|
       if @project.save

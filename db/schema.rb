@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119203304) do
+ActiveRecord::Schema.define(version: 20140125184221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140119203304) do
     t.string   "resource5_content_type"
     t.integer  "resource5_file_size"
     t.datetime "resource5_updated_at"
-    t.integer  "created_by",             default: 1
+    t.integer  "user_id",                default: 1
     t.integer  "tags_count",             default: 0
   end
 

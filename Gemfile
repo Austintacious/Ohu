@@ -62,6 +62,8 @@ group :development, :test do
   gem 'mailcatcher'
   gem 'bullet'
   gem 'brakeman'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 
 group :production do

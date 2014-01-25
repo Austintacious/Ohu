@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
     square: '200x200#',
     medium: '300x300>'
   }
+  belongs_to :user
   has_many :projectmembers
   has_many :users,
     through: :projectmembers
@@ -24,7 +25,7 @@ class Project < ActiveRecord::Base
     if search
       Project.includes(:tags).where('tags.name ILIKE ? OR projects.title ILIKE ?',"%#{search}%", "%#{search}%").references(:tags)
     else
-      scoped
+      all
     end
   end
 
