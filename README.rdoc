@@ -1,1 +1,6 @@
-One of the greatest problems in community-based projects is the sharing of information. This webapp seeks to bridge the gaps between organizations and those invested in the community, and this is just the beginning. Any feedback would be amazing!
+===
+OHU
+
+One of the greatest problems in community-based projects is the sharing of information. I started making this webapp because I wanted to bridge the gaps between organizations and those invested in the community, and help community efforts get off of the ground. 
+
+This is just the beginning, and any feedback would be amazing!
