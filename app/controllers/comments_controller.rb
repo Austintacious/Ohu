@@ -12,10 +12,8 @@ class CommentsController < ApplicationController
     @user = "#{@comment.user.first_name} #{@comment.user.last_name}"
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to project_path(@project), notice: 'Comment created successfully' }
         format.json { render json: {comment: @comment, user: @user} }
       else
-        format.html { redirect_to project_path(@project), notice: 'There was an issue adding your comment. Edit, and try again.' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
