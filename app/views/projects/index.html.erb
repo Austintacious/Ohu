@@ -14,10 +14,13 @@
   </h3>
 
   <div class="pre-banner">
-    <p>Not a member?</p> <%= link_to "<button>Sign Up</button>".html_safe, new_user_registration_path %>
+    <p>Not a member?</p>
+    <%= link_to "<button>Sign Up</button>".html_safe, new_user_registration_path %>
   </div>
 
-  <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
+  <h1 class="banner">
+    Find a <strong>Project</strong> // Find a <strong>Passion</strong>
+  </h1>
 
   <%= form_tag projects_path, method: :get do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search for a project by tag or title!" %>
@@ -29,14 +32,17 @@
 
 <% else %>
 
-  <h1 class="banner">Find a <strong>Project</strong> // Find a <strong>Passion</strong></h1>
+  <h1 class="banner">
+    Find a <strong>Project</strong> // Find a <strong>Passion</strong>
+  </h1>
 
   <%= form_tag projects_path, method: :get do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search for a project by tag or title!" %>
   <% end %>
+
   <hr>
-  <%= render 'projects' %>
-  <br>
+
+  <%= render 'projects' %><br>
 
 <% end %>
 

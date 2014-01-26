@@ -1,9 +1,12 @@
 
 <% @projects.sort.each do |project| %>
+
   <div class="project">
+
     <div class="pic-container" <% if !project.avatar_file_size.nil? %> style="background-image: url(<%= project.avatar %>);" <% end %>>
       <h3>
-        <span class="join-button"><%= link_to "+", project_join_project_path(project), method: :put %>
+        <span class="join-button">
+          <%= link_to "+", project_join_project_path(project), method: :put %>
         </span>
         <%= project.projectmembers.first.user.first_name + " " + project.projectmembers.first.user.last_name %>
       </h3>
@@ -17,10 +20,13 @@
         <%= link_to "#{project.title}", project %>
       </h3>
     </div>
+
     <hr>
+
     <div class="index">
       <%= render partial: 'projects/voting', locals: {project: project} %>
     </div>
+
     <p>
       <% project.tags.any? %>
         <% project.tags.sort{|a,b| a.name <=> b.name}.first(3).each do |tag| %>
@@ -41,6 +47,7 @@
     <% elsif user_signed_in? && project.user_id != current_user.id && current_user.role == "user" %>
       <br>
     <% end %>
+
   </div>
 
 <% end %>

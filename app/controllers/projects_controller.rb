@@ -83,10 +83,6 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
     @project.downvote_from current_user
     respond_to do |format|
-      format.html do
-        flash[:notice] = "Thanks for voting!"
-        redirect_to @project
-      end
       format.json {render json: [@project, (@project.likes.size - @project.dislikes.size)] }
     end
   end
